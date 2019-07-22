@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\66859\\source\\repos\\AdminPanel\\AdminPanel\\AdminPanel.csproj": {}
+    "C:\\Users\\MSI\\source\\repos\\hi\\AdminPanel\\AdminPanel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\66859\\source\\repos\\AdminPanel\\AdminPanel\\AdminPanel.csproj": {
+    "C:\\Users\\MSI\\source\\repos\\hi\\AdminPanel\\AdminPanel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\66859\\source\\repos\\AdminPanel\\AdminPanel\\AdminPanel.csproj",
+        "projectUniqueName": "C:\\Users\\MSI\\source\\repos\\hi\\AdminPanel\\AdminPanel.csproj",
         "projectName": "AdminPanel",
-        "projectPath": "C:\\Users\\66859\\source\\repos\\AdminPanel\\AdminPanel\\AdminPanel.csproj",
-        "packagesPath": "C:\\Users\\66859\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\66859\\source\\repos\\AdminPanel\\AdminPanel\\obj\\",
+        "projectPath": "C:\\Users\\MSI\\source\\repos\\hi\\AdminPanel\\AdminPanel.csproj",
+        "packagesPath": "C:\\Users\\MSI\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MSI\\source\\repos\\hi\\AdminPanel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\66859\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MSI\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
