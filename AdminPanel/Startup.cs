@@ -5,11 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using AdminPanel.Data;
+using AdminPanel.Services.Mail;
+using AdminPanel.Services.Profile;
 namespace AdminPanel
 {
     public class Startup
@@ -31,9 +35,47 @@ namespace AdminPanel
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.Configure<CookieTempDataProviderOptions>(options =>
+            {
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -._@+";
+                config.SignIn.RequireConfirmedEmail = false;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            if (Configuration["Authentication:Facebook:IsEnabled"] == "true")
+            {
+                services
+                    .AddAuthentication()
+                    .AddFacebook(facebookOptions => {
+                        facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                        facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                    });
+            }
+
+            if (Configuration["Authentication:Google:IsEnabled"] == "true")
+            {
+                services
+                    .AddAuthentication()
+                    .AddGoogle(googleOptions => {
+                        googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                        googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                    });
+            }
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
+    
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
